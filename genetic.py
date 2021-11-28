@@ -4,7 +4,7 @@ import random
 from structures.genome import Genome
 from structures.specimen import Specimen
 
-# Seleciona um espécime da população baseado na sua variável "chance"
+# Seleciona um indivíduo da população baseado na sua variável "chance"
 def select_random_specimen(population):
   pool_size = 0
 
@@ -13,7 +13,7 @@ def select_random_specimen(population):
 
   random_number = random.uniform(0, pool_size)
 
-  # Faz uma acumulação da variável "chance" até achar o espécime sorteado
+  # Faz uma acumulação da variável "chance" até achar o indivíduo sorteado
   accumulated_probability = 0
   for specimen in population:
     accumulated_probability += specimen.get_chance()
@@ -22,7 +22,7 @@ def select_random_specimen(population):
 
   return None
 
-# Gera uma nova população com os espécimes selecionados
+# Gera uma nova população com os indivíduos selecionados
 def select_population(population, many_specimens):
   new_population = []
 
@@ -35,31 +35,31 @@ def select_population(population, many_specimens):
 def generate_population(number):
   population = []
 
-  # Gerando os espécimes com os três genomas
+  # Gerando os indivíduos com os três genomas
   for i in range(number):
     population.append(Specimen([Genome(), Genome(), Genome()]))
 
   return population
 
-# Aplica a função "get_fitness" para todos os espécimes da população
+# Aplica a função "get_fitness" para todos os indivíduos da população
 def generate_fitness_population(population):
-  # Pegando o fitness de cada espécime
+  # Pegando o fitness de cada indivíduo
   for specimen in population:
     specimen.set_fitness(get_fitness(specimen))
 
-# Gera as chances de um espécime ser selecionado (com base na população toda)
+# Gera as chances de um indivíduo ser selecionado (com base na população toda)
 def generate_choose_chance(population, max_population):
   for index, specimen in enumerate(population):
     # Chance = distância do atual para o pior / pela posição atual + 1
-    # A chance de ser escolhido vai caindo proprocionalmente ao aumento do index (distância do melhor espécime)
+    # A chance de ser escolhido vai caindo proprocionalmente ao aumento do index (distância do melhor indivíduo)
     specimen.set_chance((specimen.get_fitness() - population[max_population - 1].get_fitness()) / (index + 1))
 
-# Gera mutação em alguns espécimes (com base na porcentagem de mutação)
+# Gera mutação em alguns indivíduos (com base na porcentagem de mutação)
 def generate_mutation(population, percentage):
   for specimen in population:
     specimen.generate_mutation(percentage)
 
-# Faz o cruzamento de duas espécimes
+# Faz o cruzamento de duas indivíduos
 def crossover_specimens(specimen_one, specimen_two):
   # Fazendo o corte do genes em uma posição aleatória
   cut_position = random.randint(0, 17)
@@ -103,22 +103,22 @@ def get_fitness(specimen):
 
   return float(content.decode('utf-8').partition('\n')[0])
 
-# Função responsável por mostrar alguns espécimes da população atual
+# Função responsável por mostrar alguns indivíduos da população atual
 def print_population(population, gen):
   print('-' * 130)
-  print('Geração #', gen, '|', 'Indivíduo mais apto: cromossomo # 1 -', population[0].get_fitness())
+  print('Geração #', gen, '|', 'Indivíduo mais apto: Indivíduo # 1 - fitness:', population[0].get_fitness())
   print('-' * 130)
 
   for i in range(10 if len(population) >= 10 else len(population)):
-    print('Cromossomo', '#', i + 1, ':', population[i])
+    print('Indivíduo', '#', i + 1, ':', population[i])
 
   if len(population) >= 10:
     print('-' * 130)
-    print('-' * 33 + ' A lista acima contém os dez melhores cromossomos dessa geração ' + '-' * 33)
+    print('-' * 33 + ' A lista acima contém os dez melhores indivíduos dessa geração ' + '-' * 33)
     print('-' * 130)
   print()
 
-# Função responsável por mostrar o melhor espécime
+# Função responsável por mostrar o melhor indivíduo
 def print_best_specimen(population):
   genomes = population[0].get_genomes()
   angles = ''

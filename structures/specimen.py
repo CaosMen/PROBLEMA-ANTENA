@@ -1,12 +1,12 @@
 class Specimen:
   def __init__(self, genomes):
-    """ Inicializa o espécime com os genomas """
+    """ Inicializa o indivíduo com os genomas """
     self.genomes = genomes
     self.fitness = 0
     self.chance = 0
 
   def set_fitness(self, fitness):
-    """ Atribui o fitness do espécime """
+    """ Atribui o fitness do indivíduo """
     self.fitness = fitness
 
   def set_chance(self, chance):
@@ -14,11 +14,11 @@ class Specimen:
     self.chance = chance
 
   def get_fitness(self):
-    """ Retorna o fitness do espécime """
+    """ Retorna o fitness do indivíduo """
     return self.fitness
 
   def get_chance(self):
-    """ Retorna a chance do espécime ser escolhido """
+    """ Retorna a chance do indivíduo ser escolhido """
     return self.chance
 
   def get_genome(self, number):
@@ -35,4 +35,4 @@ class Specimen:
       self.genomes[i].generate_mutation(percentage)
 
   def __repr__(self):
-    return 'Specimen(' + ', '.join(map(str, [self.genomes, self.fitness])) + ')'
+    return 'Indivíduo(' + ', '.join(map(str, [self.genomes, self.fitness])) + ')'

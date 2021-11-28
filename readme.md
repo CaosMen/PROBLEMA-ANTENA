@@ -28,6 +28,8 @@ $ python main.py (população máxima) (quantidade de gerações) (porcentagem d
   <img alt="" title="" src="preview/console_1.png">
 </h1>
 
+<p align="center">Formato da saída: Indivíduo([lista de genes], fitness)</p>
+
 <h1 align="center">
   <img alt="" title="" src="preview/console_2.png">
 </h1>
